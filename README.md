@@ -1,7 +1,7 @@
 ## Installation
 
-* `git clone <repository-url>` this repository
-* change into the new directory
+* `git clone git@github.com:Aathi/github-repositories.git` this repository
+* `cd github-repositories`
 * `npm install`
 * `bower install`
 
