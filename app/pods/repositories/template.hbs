@@ -1,0 +1,71 @@
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>All {{ownername}} repos</h2>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="pull-right">
+      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <div class="btn-group" role="group">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenu1"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+            Filter By Language
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <a class="dropdown-item" href="#" {{action 'filterByLanguage'}}>Reset</a>
+            {{#each unique as |language index|}}
+              <a class="dropdown-item" href="#" {{action 'filterByLanguage' language}}>{{language}}</a>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group" data-toggle="buttons">
+        <button
+          type="button"
+          {{action 'filterByAccess' 'public'}}
+          class="btn btn-primary-outline">
+          Public Ripo
+        </button>
+
+        <button
+          type="button"
+          {{action 'filterByAccess' 'private'}}
+          class="btn btn-primary-outline">
+          Private Ripo
+        </button>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-md-4">
+      {{#each filteredResults as |item|}}
+        <a href="#" {{action 'showRopoDetails' item.owner.login item.name}} class="list-group-item">
+          <span class="label label-default label-pill pull-xs-right">{{item.language}}</span>
+          {{item.name}}
+        </a>
+      {{/each}}
+    </div>
+    <div class="col-md-8">
+      {{outlet}}
+    </div>
+  </div>
+
+

@@ -6,6 +6,13 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('repositories', {
+      path: '/:ownerType/:ownername/:accessToken'
+    },function() {
+    this.route('repo', {
+      path: '/:owner/:name'
+    });
+  });
 });
 
 export default Router;

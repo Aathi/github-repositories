@@ -1,0 +1,40 @@
+<table class="table">
+   <thead class="thead-inverse">
+    <tr>
+      <th>Ripo Name</th>
+      <th>Ripo Url</th>
+      <th>Number of branches</th>
+      <th>Language</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{model.name}}</td>
+      <td>
+        <a href="{{model.html_url}}">Go to ripo</a>
+      </td>
+      <td>{{branches.length}}</td>
+      <td>
+        <span class="label label-info">
+          {{model.language}}
+        </span>
+      </td>
+      <td>
+        <span class="label label-{{isPrivate.css}}">
+          {{isPrivate.data}}
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<h3>Branches</h3>
+<ul class="list-group">
+{{#each branches as |branch|}}
+  <li class="list-group-item">
+    <span class="label label-default label-pill pull-xs-right">{{branch.commit.sha}}</span>
+   {{branch.name}}
+  </li>
+{{/each}}
+</ul>
