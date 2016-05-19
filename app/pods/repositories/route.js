@@ -3,10 +3,10 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   model(params) {
     let url;
-    if (params.ownerType === 'users') {
-      url = `https://api.github.com/users/${params.ownername}/repos?per_page=200?access_token=${params.accessToken}`;
+    if (params.accessToken === 'public-ripos-only') {
+      url = `https://api.github.com/${params.ownerType}/${params.ownername}/repos?per_page=200`;
     } else {
-      url = `https://api.github.com/orgs/${params.ownername}/repos?per_page=200`;
+      url = `https://api.github.com/${params.ownerType}/${params.ownername}/repos?per_page=200?access_token=${params.accessToken}`;
     }
 
     return Ember.RSVP.hash({
