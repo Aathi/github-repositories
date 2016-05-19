@@ -27,7 +27,7 @@ export default Controller.extend({
     },
 
     hideOnChange() {
-      if (this.get('owner')) {
+      if (this.get('owner') === 'users') {
         this.set('isUser', true);
       } else {
         this.set('isUser', false);
