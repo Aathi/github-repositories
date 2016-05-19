@@ -1,14 +1,28 @@
-
-  <div class="row">
-    <div class="col-md-12">
-      <h2>All {{ownername}} repos</h2>
+<div class="row">
+  <div class="col-md-3">
+    <div class="card">
+      <img class="img-responsive-custom" src="{{ownerDetails.avatar_url}}" alt="Card image cap">
+      <div class="card-block">
+      <h4 class="card-title">{{ownerDetails.name}}</h4>
+        <p class="card-text">{{ownerDetails.company}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        {{#if ownerDetails.location}}
+          <li class="list-group-item">{{ownerDetails.email}}</li>
+        {{/if}}
+        {{#if ownerDetails.location}}
+          <li class="list-group-item">{{ownerDetails.location}}</li>
+        {{/if}}
+        {{#if ownerDetails.created_at}}
+          <li class="list-group-item">{{moment-format ownerDetails.created_at "DD/YY/YYYY"}}</li>
+        {{/if}}
+      </ul>
     </div>
   </div>
-  <br>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="pull-right">
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-6">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
         <div class="btn-group" role="group">
           <button
@@ -28,44 +42,50 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-6">
+      <div class="pull-right">
+        <div class="btn-group" data-toggle="buttons">
+          <button
+            type="button"
+            {{action 'filterByAccess' 'public'}}
+            class="btn btn-primary-outline">
+            Public Ripo
+          </button>
+
+          <button
+            type="button"
+            {{action 'filterByAccess' 'private'}}
+            class="btn btn-primary-outline">
+            Private Ripo
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  <br>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="btn-group" data-toggle="buttons">
-        <button
-          type="button"
-          {{action 'filterByAccess' 'public'}}
-          class="btn btn-primary-outline">
-          Public Ripo
-        </button>
-
-        <button
-          type="button"
-          {{action 'filterByAccess' 'private'}}
-          class="btn btn-primary-outline">
-          Private Ripo
-        </button>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h3>Popular repositories</h3>
+          </div>
+          <ul class="list-group list-group-flush">
+            {{#each filteredResults as |item|}}
+              <a href="#" class="list-group-item" {{action 'showRopoDetails' item.owner.login item.name}}>
+                {{item.name}}
+                <span class="label label-default label-pill pull-xs-right">{{item.language}}</span>
+              </a>
+            {{/each}}
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-  <br>
 
-  <div class="row">
-    <div class="col-md-4">
-      {{#each filteredResults as |item|}}
-        <a href="#" {{action 'showRopoDetails' item.owner.login item.name}} class="list-group-item">
-          <span class="label label-default label-pill pull-xs-right">{{item.language}}</span>
-          {{item.name}}
-        </a>
-      {{/each}}
-    </div>
-    <div class="col-md-8">
-      {{outlet}}
-    </div>
   </div>
+</div>
+<br>
+
+
 
 

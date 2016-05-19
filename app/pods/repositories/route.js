@@ -11,13 +11,16 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       ripos: Ember.$.getJSON(url),
-      ownername: params.ownername
+      ownername: params.ownername,
+      ownerDetails: Ember.$.getJSON(`https://api.github.com/${params.ownerType}/${params.ownername}`)
     });
   },
   setupController(controller, models) {
+    console.log(models.ripos);
     controller.setProperties({
       model: models.ripos,
-      ownername: models.ownername
+      ownername: models.ownername,
+      ownerDetails: models.ownerDetails,
     });
   }
 });

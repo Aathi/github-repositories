@@ -10,17 +10,21 @@ export default Controller.extend({
       let ownerType = this.get('isUserSelected');
 
       if (isEmpty(ownername)) {
-        this.set('formError', true);
-        this.set('formError', 'Please enter the name and access token');
+        this.set('formError', 'Please enter the name');
       } else {
         this.set('formError', false);
         if (isEmpty(accessToken)) {
-          this.set('formError', `if you didn't provide the access token it will show only public ripo`);
+          this.set('formError', `if you didn't provide the access token it will show only public repositories`);
           this.transitionToRoute('repositories', ownerType, ownername, 'public-ripos-only');
         } else {
           this.transitionToRoute('repositories', ownerType, ownername, accessToken);
         }
       }
+
+      Ember.run.later(this, function() {
+         $(".alert").fadeOut(500);
+         this.set('formError', false);
+      }, 3000);
     },
 
     selectAuser(userType) {

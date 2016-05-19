@@ -1,3 +1,10 @@
+{{#if model}}
+  <ol class="breadcrumb">
+    <li><a href="{{model.owner.html_url}}">{{model.owner.login}}</a></li>
+    <li class="active"><a href="{{model.html_url}}">{{model.name}}</a></li>
+  </ol>
+{{/if}}
+
 <table class="table">
    <thead class="thead-inverse">
     <tr>

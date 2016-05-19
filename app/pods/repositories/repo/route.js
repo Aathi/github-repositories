@@ -11,6 +11,7 @@ export default Ember.Route.extend({
     });
   },
   setupController(controller, models) {
+    console.log(models.ripos);
     let isPrivate = {};
     if (models.private) {
         isPrivate = {
